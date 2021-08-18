@@ -1,0 +1,9 @@
+<div>
+  <p>{{contador}}</p>
+  <div class="button-group">
+    <button class="button" (click)="multiplicar()"> Multiplicar</button>
+    <button class="button" (click)="dividir()" >Dividir</button>
+  </div>
+</div>
+<app-resetear [contador]="contador" (contadorChange)= "myFunction($event)"></app-resetear>
+
