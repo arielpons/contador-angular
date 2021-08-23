@@ -1,4 +1,5 @@
 import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
+import { ContadorService } from '../contador.service';
 
 @Component({
   selector: 'app-incrementar-decrementar',
@@ -6,22 +7,15 @@ import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./incrementar-decrementar.component.scss']
 })
 export class IncrementarDecrementarComponent {
-
-  @Input() contador:number = 0;
-  @Output() contadorChange = new EventEmitter<number>();
-
-  incrementar() {
-    this.contador++;
-    this.contadorChange.emit(this.contador);
-  }
-
-  decrementar() {
-    this.contador--;
-    this.contadorChange.emit(this.contador);
-  }
-  myFunction(event:number){
-    this.contador = event;  
-    this.contadorChange.emit(this.contador);
-   }
+ constructor(public ContadorService: ContadorService) {}
+ngOnInit(): void {
+  this.ContadorService.contador = this.ContadorService.contador;
+}
+decrementar(): void {
+  this.ContadorService.contador = this.ContadorService.decrementar(this.ContadorService.contador);
+}
+incrementar(): void {
+  this.ContadorService.contador = this.ContadorService.incrementar(this.ContadorService.contador);
+}
 }
 
